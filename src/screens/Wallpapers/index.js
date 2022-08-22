@@ -1,12 +1,22 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { StackActions } from '@react-navigation/native';
 
-const Wallpapers = () => {
+import { Header } from '../../components';
+
+const Wallpapers = (props) => {
 	return (
 		<View>
-			<Text>Ini Wallpapers</Text>
+			<Header
+				onPressLeftIcon={ () => StackActions.pop() }
+				onPressRightIcon={ null }
+				title={ 'Wallpaper' }
+			/>
+			<Text>Ini Wallpapers, hi { props.user.name }!</Text>
 		</View>
 	);
 };
+
+const stackScreen = ['home', 'favorite', 'payment'];
 
 export default Wallpapers;
