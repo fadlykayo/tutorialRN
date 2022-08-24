@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StackActions } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
 
 import { Header } from '../../components';
+import { Navigation } from '../../helper';
 
 import Style from './style';
 
 const Home = () => {
+
 	const [movieList, setMovieList] = useState([]);
 
 	useEffect(() => {
@@ -39,7 +41,7 @@ const Home = () => {
 			iconName: 'ios-image-outline',
 			title: 'Wallpapers',
 			color: 'blue',
-			navigate: () => StackActions.push('wallpapers', { user: { name: 'abc' } }),
+			navigate: () => Navigation.push('wallpapers', { user: { name: 'abc' } }),
 		},
 		{
 			iconName: 'ios-images-outline',
