@@ -12,11 +12,9 @@ const Wallpapers = (props) => {
 				onPressRightIcon={ null }
 				title={ 'Wallpaper' }
 			/>
-			<Text>Ini Wallpapers, hi { props.user.name }!</Text>
+			<Text>Ini Wallpapers, hi { props.user?.name }!</Text>
 		</View>
 	);
 };
-
-const stackScreen = ['home', 'favorite', 'payment'];
 
 export default Wallpapers;
