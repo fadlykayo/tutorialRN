@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Home, Wallpapers } from '../screens';
-import { navigationRef } from '../helper';
+import { Navigation } from '../helper';
 
 const Stack = createNativeStackNavigator();
 
 const MainRouter = () => {
 	return (
-		<NavigationContainer ref = {navigationRef}>
+		<NavigationContainer ref={ Navigation.navigationRef }>
 			<Stack.Navigator
 				initialRouteName='home'
 				screenOptions={ { headerShown: false } }
