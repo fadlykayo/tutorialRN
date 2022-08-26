@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { StackActions } from '@react-navigation/native';
 
 import { Header } from '../../components';
+import { Navigation } from '../../helper';
 
 const Wallpapers = (props) => {
 	return (
 		<View>
 			<Header
-				onPressLeftIcon={ () => StackActions.pop() }
+				onPressLeftIcon={ () => Navigation.pop() }
 				onPressRightIcon={ null }
 				title={ 'Wallpaper' }
 			/>

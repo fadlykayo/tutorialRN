@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StackActions, useNavigation } from '@react-navigation/native';
 
 import { Header } from '../../components';
 import { Navigation } from '../../helper';
@@ -13,7 +12,7 @@ const Home = () => {
 	const [movieList, setMovieList] = useState([]);
 
 	useEffect(() => {
-		getMovieList();
+		// getMovieList();
 	}, []);
 
 	const getMovieList = async (data) => {
