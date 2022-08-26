@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Header } from '../../components';
@@ -10,6 +10,7 @@ import Style from './style';
 const Home = () => {
 
 	const [movieList, setMovieList] = useState([]);
+	const [indexActiveBanner, setIndexActiveBanner] = useState(0);
 
 	useEffect(() => {
 		// getMovieList();
@@ -79,6 +80,29 @@ const Home = () => {
 		});
 	};
 
+	const renderIndicator = () => {
+		let moviesBanner = movieList.slice(0, 5);
+
+		let position = indexActiveBanner / Dimensions.get('window').width;
+
+		let renderIndicator = moviesBanner.map((data, index) => {
+			return (
+				<View style={ Style.indicatorBullet(position === index ? 'white' : 'grey') }></View>
+			);
+		});
+
+		return (
+			<ScrollView
+				style={ Style.indicatorContainer }
+				horizontal
+				pagingEnabled
+				onScroll={ (e) => setIndexActiveBanner(e.nativeEvent.contentOffset.x) }
+			>
+				{ renderIndicator }
+			</ScrollView>
+		);
+	};
+
 	const renderMovieCard = () => {
 		return movieList.map((data, index) => {
 			console.log('===>', data);
@@ -127,6 +151,7 @@ const Home = () => {
 
 			<View style={ Style.content }>
 				{ renderContent() }
+				{ renderIndicator() }
 			</View>
 
 			{ renderFooter() }
