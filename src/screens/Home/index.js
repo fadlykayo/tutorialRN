@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, SafeAreaView, ScrollView } from 'react-native';
+import {
+	View, SafeAreaView, ScrollView, TouchableOpacity, Text,
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Footer from '../../components/Footer';
@@ -12,19 +14,15 @@ import { actions } from '../../store';
 import Style from './style';
 
 const Home = () => {
-	const [moviesData, setMoviesData] = useState({});
-
 	const dispatch = useDispatch();
 
 	const getMovieNowPlayingAction = dispatch(actions.MovieAction.getMovieNowPlaying);
-	const getMovieSimilarAction = dispatch(actions.MovieAction.getMovieSimilar);
 
-	const movieNowSelector = useSelector(state => state.movies.nowPlaying);
-
-	// console.log('ini global state kita', movieNowSelector[0].id);
+	const movieNowPlayingReducer = useSelector(state => state.movies.nowPlaying);
+	const movieNowPlayingReducerSliced = useSelector(state => state.movies.nowPlaying.slice(0, 3));
 
 	useEffect(() => {
-		dispatch(actions.MovieAction.getMovieNowPlaying);
+		getMovieNowPlayingAction();
 	}, []);
 
 	return (
@@ -32,11 +30,14 @@ const Home = () => {
 			{ /* <Header /> */ }
 			<View style={ Style.content }>
 				<ScrollView>
-					<Poster isHome posterList={ moviesData?.results?.slice(0, 3) } />
+					<Poster isHome posterList={ movieNowPlayingReducerSliced } />
 					<View style={ Style.list }>
-						<CardList title='New Release' listData={ moviesData?.results } />
-						<CardList title='TV Show' listData={ moviesData?.results } />
-						<CardList title='Movies' listData={ moviesData?.results } />
+						<CardList title='New Release' listData={ movieNowPlayingReducer } />
+						<CardList title='TV Show' listData={ movieNowPlayingReducer } />
+						<CardList title='Movies' listData={ movieNowPlayingReducer } />
+						<TouchableOpacity>
+							<Text style={ { color: 'white' } }>press me</Text>
+						</TouchableOpacity>
 					</View>
 				</ScrollView>
 			</View>

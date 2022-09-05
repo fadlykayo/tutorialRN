@@ -1,5 +1,5 @@
 export default {
-	getMovieNowPlaying: async dispatch => {
+	getMovieNowPlaying: dispatch => async () => {
 		const apiFetch = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=d296ca75e77481fb4bed199075ea7901', {
 			method: 'GET',
 			headers: {
@@ -15,7 +15,7 @@ export default {
 				payload: result,
 			});
 		} else {
-			console.log('error');
+			console.log('[Error Get Movie Now Playing]: ', result?.status_message);
 		}
 	},
 
@@ -35,7 +35,7 @@ export default {
 				payload: result,
 			});
 		} else {
-			console.log('error');
+			console.log('[Error Get Movie Similar]: ', result?.status_message);
 		}
 	},
 };

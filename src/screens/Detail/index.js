@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
 	View, SafeAreaView, FlatList, Text, ScrollView,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 
 import CardList from '../../components/CardList';
 import Poster from '../../components/Poster';
+import { actions } from '../../store';
 
 import Style from './style';
 
@@ -14,25 +15,14 @@ const Detail = () => {
 	const { params } = useRoute();
 	const { data } = params;
 
-	// console.log(JSON.stringify(data, null, 2));
+	const dispatch = useDispatch();
 
-	const [similiar, setSimiliar] = useState({});
+	const getMovieSimilarAction = dispatch(actions.MovieAction.getMovieSimilar);
 
-	const fetchData = async() => {
-		try {
-			const response = await fetch(
-				`https://api.themoviedb.org/3/movie/${data?.id}/similar?api_key=d296ca75e77481fb4bed199075ea7901`,
-			);
-			const resData = await response.json();
-			setSimiliar(resData);
-			// console.log({ resData });
-		} catch (err) {
-			console.log(err);
-		}
-	};
+	const movieSimilarReducer = useSelector(state => state.movies.similar);
 
 	useEffect(() => {
-		fetchData();
+		getMovieSimilarAction(data.id);
 	}, []);
 
 	if (!data) {
@@ -76,7 +66,7 @@ const Detail = () => {
 					<View style={ Style.list }>
 						<CardList
 							title='You Might Also Like This'
-							listData={ similiar?.results }
+							listData={ movieSimilarReducer }
 						/>
 					</View>
 				</ScrollView>
