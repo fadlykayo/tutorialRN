@@ -24,14 +24,15 @@ export default {
 	},
 	buttonWrapper: {
 		alignSelf: 'flex-start',
-	},
-	buttonText: {
-		borderRadius: 40,
+		borderRadius: 50,
 		borderColor: '#FFE922',
 		borderWidth: 1,
-		color: '#FFE922',
-		paddingVertical: 8,
 		paddingHorizontal: 24,
+		paddingVertical: 8,
+		marginTop: 15,
+	},
+	buttonText: {
+		color: '#FFE922',
 		lineHeight: 24,
 	},
 };

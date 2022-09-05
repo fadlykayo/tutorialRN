@@ -33,14 +33,14 @@ const HeaderPoster = ({ posterData, isHome }) => {
 					source={ { uri: finalImage } }
 				/>
 				<View style={ Style.content }>
-					<Tag/>
-					{ !isHome && <Stars rating={ posterData.vote_average }/> }
+					<Tag />
+					{ !isHome && <Stars rating={ posterData.vote_average } /> }
 					<Text style={ Style.text }>{ posterData.title }</Text>
 					{ isHome && (
 						<TouchableOpacity
 							style={ Style.buttonWrapper }
 							onPress={ () => Navigation.push('Detail', { data: posterData }) }>
-							<Text style={ [Style.buttonText, { marginTop: 20 }] }>Watch Now</Text>
+							<Text style={ Style.buttonText }>Watch Now</Text>
 						</TouchableOpacity>
 					) }
 				</View>
